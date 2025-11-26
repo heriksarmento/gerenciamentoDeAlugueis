@@ -1,0 +1,410 @@
+═══════════════════════════════════════════════════════════════════════════════
+    GUIA COMPLETO - SISTEMA DE GERENCIAMENTO DE ALUGUÉIS
+═══════════════════════════════════════════════════════════════════════════════
+
+📋 VISÃO GERAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Sistema completo para gerenciar imóveis, unidades e locatários com:
+  ✅ Backend Python/FastAPI com autenticação JWT
+  ✅ Frontend React/Vite com Tailwind CSS
+  ✅ Mobile React Native nativo (Android/iOS)
+  ✅ Banco de dados SQLite
+  ✅ Documentação automática Swagger
+  ✅ Custo zero para hospedar
+
+
+📁 ESTRUTURA DO PROJETO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+rental-management/
+├── backend-python/          # API REST com FastAPI
+│   ├── main.py             # Aplicação principal
+│   ├── database.py         # Configuração do banco
+│   ├── models.py           # Modelos SQLAlchemy
+│   ├── schemas.py          # Schemas Pydantic
+│   ├── auth.py             # Autenticação JWT
+│   ├── init_db.py          # Script de inicialização
+│   └── routers/            # Rotas da API
+│
+├── frontend/               # Web app React
+│   ├── src/
+│   │   ├── components/     # Login e Dashboard
+│   │   └── services/       # API client
+│   └── package.json
+│
+└── mobile-react-native/    # App mobile nativo
+    ├── src/
+    │   ├── screens/        # 6 telas TypeScript
+    │   └── services/       # API client
+    └── package.json
+
+
+🚀 PASSO 1: CONFIGURAR O BACKEND
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Navegue até a pasta do backend:
+   $ cd backend-python
+
+2. Crie um ambiente virtual Python:
+   $ python -m venv venv
+
+3. Ative o ambiente virtual:
+   
+   Linux/Mac:
+   $ source venv/bin/activate
+   
+   Windows:
+   $ venv\Scripts\activate
+
+4. Instale as dependências:
+   $ pip install -r requirements.txt
+
+5. Inicialize o banco de dados com usuários de teste:
+   $ python init_db.py
+   
+   ✅ Isso criará:
+      - usuario1@email.com / usuario1
+      - usuario2@email.com / usuario2
+
+6. Inicie o servidor:
+   $ uvicorn main:app --reload
+
+7. Acesse a documentação automática:
+   🌐 http://localhost:8000/docs
+
+   ✅ Backend rodando na porta 8000!
+
+
+🌐 PASSO 2: CONFIGURAR O FRONTEND WEB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Abra um NOVO terminal e navegue até a pasta frontend:
+   $ cd frontend
+
+2. Instale as dependências:
+   $ npm install
+
+3. Inicie o servidor de desenvolvimento:
+   $ npm run dev
+
+4. Acesse no navegador:
+   🌐 http://localhost:5173
+
+5. Faça login com um dos usuários de teste:
+   📧 usuario1@email.com
+   🔑 usuario1
+
+   ✅ Frontend rodando na porta 5173!
+
+
+📱 PASSO 3: CONFIGURAR O MOBILE (OPCIONAL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PRÉ-REQUISITOS:
+  Android:
+    ✓ Node.js 18+
+    ✓ JDK 17
+    ✓ Android Studio
+    ✓ Android SDK
+
+  iOS (apenas macOS):
+    ✓ Node.js 18+
+    ✓ Xcode 14+
+    ✓ CocoaPods
+
+INSTALAÇÃO:
+
+1. Navegue até a pasta mobile:
+   $ cd mobile-react-native
+
+2. Instale as dependências:
+   $ npm install
+
+3. Para iOS (apenas macOS):
+   $ cd ios && pod install && cd ..
+
+4. ⚠️ IMPORTANTE: Configure a URL do backend
+   
+   Edite o arquivo: src/services/api.ts
+   
+   Para iOS (simulador):
+   const BASE_URL = 'http://localhost:8000';
+   
+   Para Android (emulador):
+   const BASE_URL = 'http://10.0.2.2:8000';
+   
+   Para dispositivo físico:
+   const BASE_URL = 'http://SEU_IP:8000';
+   
+   💡 Descubra seu IP:
+      Windows: ipconfig
+      Mac/Linux: ifconfig
+
+5. Execute o app:
+   
+   Android:
+   $ npm run android
+   
+   iOS:
+   $ npm run ios
+
+   ✅ App mobile rodando!
+
+
+🎯 COMO USAR O SISTEMA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. LOGIN
+   ├─ Use um dos usuários de teste
+   ├─ usuario1@email.com / usuario1
+   └─ usuario2@email.com / usuario2
+
+2. CRIAR IMÓVEL
+   ├─ Clique em "+ Novo Imóvel"
+   ├─ Preencha: nome, endereço, cidade, estado
+   └─ Salve
+
+3. ADICIONAR UNIDADES
+   ├─ Clique no imóvel criado
+   ├─ Clique em "+ Unidade"
+   ├─ Preencha: número, valor do aluguel
+   └─ Salve
+
+4. ADICIONAR LOCATÁRIO
+   ├─ Na unidade desejada, clique em "+ Adicionar Locatário"
+   ├─ Preencha os dados do locatário
+   ├─ Status da unidade muda automaticamente para "alugado"
+   └─ Salve
+
+5. REMOVER LOCATÁRIO
+   ├─ Clique em "Remover" no card do locatário
+   └─ Status da unidade volta para "disponível"
+
+
+📊 ESTRUTURA DO BANCO DE DADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌─────────────────┐
+│    USUARIOS     │
+├─────────────────┤
+│ id              │──┐
+│ nome            │  │
+│ email (unique)  │  │
+│ senha_hash      │  │
+└─────────────────┘  │
+                     │
+                     │ 1:N
+                     │
+┌─────────────────┐  │
+│    IMOVEIS      │  │
+├─────────────────┤  │
+│ id              │──┤
+│ nome            │  │
+│ endereco        │  │
+│ cidade          │  │
+│ estado          │  │
+│ cep             │  │
+│ usuario_id (FK) │──┘
+└─────────────────┘
+        │
+        │ 1:N
+        │
+┌─────────────────┐
+│    UNIDADES     │
+├─────────────────┤
+│ id              │──┐
+│ imovel_id (FK)  │  │
+│ numero          │  │
+│ valor_aluguel   │  │
+│ status          │  │
+└─────────────────┘  │
+                     │ 1:1
+                     │
+┌─────────────────┐  │
+│   LOCATARIOS    │  │
+├─────────────────┤  │
+│ id              │  │
+│ unidade_id (FK) │──┘
+│ nome            │
+│ cpf             │
+│ telefone        │
+│ email           │
+│ data_inicio     │
+│ data_fim        │
+└─────────────────┘
+
+
+🔐 ENDPOINTS DA API
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AUTENTICAÇÃO (públicas):
+  POST   /api/auth/registro    - Criar novo usuário
+  POST   /api/auth/login        - Login (retorna JWT)
+
+IMÓVEIS (requer autenticação):
+  GET    /api/imoveis           - Listar imóveis do usuário
+  GET    /api/imoveis/{id}      - Detalhes com unidades
+  POST   /api/imoveis           - Criar imóvel
+  PUT    /api/imoveis/{id}      - Atualizar imóvel
+  DELETE /api/imoveis/{id}      - Deletar imóvel (cascade)
+
+UNIDADES (requer autenticação):
+  POST   /api/unidades          - Criar unidade
+  PUT    /api/unidades/{id}     - Atualizar unidade
+  DELETE /api/unidades/{id}     - Deletar unidade
+
+LOCATÁRIOS (requer autenticação):
+  POST   /api/locatarios        - Criar locatário
+  PUT    /api/locatarios/{id}   - Atualizar locatário
+  DELETE /api/locatarios/{id}   - Remover locatário
+
+
+🎨 FUNCIONALIDADES DO FRONTEND WEB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Tela de Login
+   ├─ Campos de email e senha
+   ├─ Botões para preencher usuários de teste
+   └─ Design moderno com gradiente
+
+✅ Dashboard
+   ├─ Lista de imóveis em cards
+   ├─ Painel de detalhes ao clicar
+   ├─ Lista de unidades com badges de status
+   ├─ Informações dos locatários
+   ├─ Modais para criar imóvel/unidade/locatário
+   └─ Botões de ação (adicionar, remover)
+
+✅ Estilização
+   ├─ Tailwind CSS
+   ├─ Cards com shadow
+   ├─ Badges coloridos (verde=disponível, vermelho=alugado)
+   ├─ Hover effects
+   └─ Totalmente responsivo
+
+
+📱 FUNCIONALIDADES DO MOBILE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ 6 Telas TypeScript:
+   1. LoginScreen          - Autenticação
+   2. HomeScreen           - Lista de imóveis
+   3. ImovelScreen         - Detalhes do imóvel
+   4. NovoImovelScreen     - Criar imóvel
+   5. NovaUnidadeScreen    - Criar unidade
+   6. NovoLocatarioScreen  - Criar locatário
+
+✅ Recursos:
+   ├─ Pull to refresh
+   ├─ FAB (Floating Action Button)
+   ├─ Navegação entre telas
+   ├─ Badges coloridos
+   ├─ KeyboardAvoidingView
+   ├─ ActivityIndicator
+   ├─ Confirmações antes de deletar
+   └─ Persistência com AsyncStorage
+
+
+🐛 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BACKEND:
+  ❌ Erro ao instalar dependências
+     $ pip install --upgrade pip
+     $ pip install -r requirements.txt
+
+  ❌ Porta 8000 já em uso
+     $ uvicorn main:app --reload --port 8001
+
+FRONTEND:
+  ❌ Erro ao instalar dependências
+     $ npm cache clean --force
+     $ rm -rf node_modules
+     $ npm install
+
+  ❌ Erro de CORS
+     ✓ Verifique se o backend está rodando
+     ✓ CORS já está configurado no backend
+
+MOBILE:
+  ❌ Erro de conexão com API
+     ✓ Verifique a URL em src/services/api.ts
+     ✓ Use 10.0.2.2 para Android emulador
+     ✓ Use seu IP para dispositivo físico
+
+  ❌ Erro no Android
+     $ cd android
+     $ ./gradlew clean
+     $ cd ..
+     $ npm run android
+
+  ❌ Erro no iOS
+     $ cd ios
+     $ pod deintegrate
+     $ pod install
+     $ cd ..
+     $ npm run ios
+
+
+💡 DICAS E BOAS PRÁTICAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. DESENVOLVIMENTO
+   ├─ Mantenha backend, frontend e mobile rodando simultaneamente
+   ├─ Use 3 terminais diferentes
+   └─ Teste em múltiplos navegadores/dispositivos
+
+2. SEGURANÇA
+   ├─ Troque o SECRET_KEY em produção
+   ├─ Use HTTPS em produção
+   └─ Nunca commite senhas ou tokens
+
+3. BANCO DE DADOS
+   ├─ SQLite é ótimo para desenvolvimento
+   ├─ Para produção, considere PostgreSQL
+   └─ Faça backups regulares
+
+4. DEPLOY
+   ├─ Backend: Railway, Render, Heroku
+   ├─ Frontend: Vercel, Netlify, GitHub Pages
+   └─ Mobile: Google Play Store, Apple App Store
+
+
+🎓 PRÓXIMOS PASSOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MELHORIAS SUGERIDAS:
+  □ Upload de fotos dos imóveis
+  □ Sistema de pagamentos (Stripe)
+  □ Notificações push (Firebase)
+  □ Gráficos de receita
+  □ Exportar relatórios PDF
+  □ Chat em tempo real
+  □ Busca e filtros avançados
+  □ Histórico de pagamentos
+  □ Contratos digitais
+  □ Integração com WhatsApp
+
+
+📚 RECURSOS ÚTEIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Documentação:
+  🔗 FastAPI: https://fastapi.tiangolo.com/
+  🔗 React: https://react.dev/
+  🔗 React Native: https://reactnative.dev/
+  🔗 Tailwind CSS: https://tailwindcss.com/
+  🔗 SQLAlchemy: https://www.sqlalchemy.org/
+
+Comunidades:
+  💬 FastAPI Discord
+  💬 React Discord
+  💬 React Native Community
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                    🎉 SISTEMA PRONTO PARA USO! 🎉
+═══════════════════════════════════════════════════════════════════════════════
+
+Desenvolvido com ❤️ usando Python, React e React Native

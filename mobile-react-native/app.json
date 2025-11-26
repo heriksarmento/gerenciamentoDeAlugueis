@@ -1,0 +1,8 @@
+{
+  "name": "RentalManagement",
+  "displayName": "Gerenciamento de Aluguéis",
+  "plugins": [
+    "expo-asset",
+    "expo-font"
+  ]
+}
