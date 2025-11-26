@@ -29,7 +29,35 @@ rental-management/
 
 ## 🏃 Como Executar
 
-### Backend
+### 🐳 Com Docker (Recomendado)
+
+```bash
+# Instalação rápida
+make install
+
+# Ou manualmente
+cp .env.example .env
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+**Acessar:**
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8000/docs
+- PostgreSQL: localhost:5432
+
+**Comandos úteis:**
+```bash
+make dev          # Iniciar desenvolvimento
+make logs         # Ver logs
+make down-dev     # Parar serviços
+make backup       # Backup do banco
+```
+
+Consulte [DOCKER_GUIDE.md](DOCKER_GUIDE.md) para mais detalhes.
+
+### 💻 Sem Docker (Manual)
+
+#### Backend
 ```bash
 cd backend-python
 python -m venv venv
@@ -38,22 +66,19 @@ pip install -r requirements.txt
 python init_db.py
 uvicorn main:app --reload
 ```
-Acesse: http://localhost:8000/docs
 
-### Frontend
+#### Frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-Acesse: http://localhost:5173
 
-### Mobile
+#### Mobile
 ```bash
 cd mobile-react-native
 npm install
-# Edite src/services/api.ts com o IP do seu backend
-npm run android  # ou npm run ios
+npx expo start
 ```
 
 ## 👤 Usuários de Teste
